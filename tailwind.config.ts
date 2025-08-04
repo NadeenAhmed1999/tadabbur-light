@@ -18,6 +18,22 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				arabic: 'var(--font-arabic)',
+				english: 'var(--font-english)',
+			},
+			backgroundImage: {
+				'gradient-dawn': 'var(--gradient-dawn)',
+				'gradient-night': 'var(--gradient-night)',
+				'gradient-sacred': 'var(--gradient-sacred)',
+			},
+			boxShadow: {
+				gentle: 'var(--shadow-gentle)',
+				elevated: 'var(--shadow-elevated)',
+			},
+			transitionTimingFunction: {
+				gentle: 'var(--transition-gentle)',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
