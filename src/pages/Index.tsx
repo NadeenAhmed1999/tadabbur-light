@@ -3,14 +3,15 @@ import QuranReader from '@/components/QuranReader';
 import SurahNavigation from '@/components/SurahNavigation';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { BookOpen, Heart, Star, Users } from 'lucide-react';
+import { BookOpen, Heart, Star, Users, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [currentView, setCurrentView] = useState<'home' | 'reader' | 'navigation'>('home');
   const [selectedSurah, setSelectedSurah] = useState<number>(1);
 
   if (currentView === 'reader') {
-    return <QuranReader />;
+    return <QuranReader onBack={() => setCurrentView('home')} />;
   }
 
   if (currentView === 'navigation') {
@@ -46,10 +47,10 @@ const Index = () => {
           <div className="text-center space-y-8">
             <div className="space-y-4">
               <h1 className="text-5xl font-bold text-foreground tracking-tight">
-                Tadabbur
+                Miftah
               </h1>
               <p className="text-xl font-arabic text-primary">
-                تدبّر القرآن الكريم
+                مفتاح القرآن الكريم
               </p>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Reflect deeply on the Qur'an through Arabic and English with contextual meanings, 
@@ -137,14 +138,19 @@ const Index = () => {
           <div className="text-center space-y-4">
             <div className="flex items-center justify-center gap-2">
               <BookOpen className="h-5 w-5 text-primary" />
-              <span className="font-semibold text-foreground">Tadabbur</span>
+              <span className="font-semibold text-foreground">Miftah</span>
             </div>
             <p className="text-sm text-muted-foreground">
               A peaceful space for reflection and understanding of the Holy Qur'an
             </p>
-            <p className="text-xs text-muted-foreground">
-              Built with reverence and respect • No ads, no distractions
-            </p>
+            <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
+              <span>Built with reverence and respect</span>
+              <span>•</span>
+              <Link to="/sources-policy" className="hover:text-primary transition-colors flex items-center gap-1">
+                <Shield className="h-3 w-3" />
+                Sources & Review Policy
+              </Link>
+            </div>
           </div>
         </div>
       </footer>
