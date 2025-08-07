@@ -5,14 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Search, BookOpen, X, ArrowRight } from 'lucide-react';
-
-interface Surah {
-  number: number;
-  name: string;
-  arabicName: string;
-  revelation: 'Meccan' | 'Medinan';
-  ayahCount: number;
-}
+import { allSurahs, type SurahInfo } from '@/data/surahs';
 
 interface Ayah {
   surahNumber: number;
@@ -25,7 +18,7 @@ interface Ayah {
 
 interface SearchResult {
   type: 'surah' | 'ayah';
-  surah?: Surah;
+  surah?: SurahInfo;
   ayah?: Ayah;
   matchedText?: string;
 }
@@ -36,14 +29,7 @@ interface SearchDialogProps {
   onNavigate: (surahNumber: number, ayahNumber?: number) => void;
 }
 
-// Sample expanded data
-const sampleSurahs: Surah[] = [
-  { number: 1, name: "Al-Fatihah", arabicName: "الفاتحة", revelation: "Meccan", ayahCount: 7 },
-  { number: 2, name: "Al-Baqarah", arabicName: "البقرة", revelation: "Medinan", ayahCount: 286 },
-  { number: 3, name: "Aal-E-Imran", arabicName: "آل عمران", revelation: "Medinan", ayahCount: 200 },
-  { number: 4, name: "An-Nisa", arabicName: "النساء", revelation: "Medinan", ayahCount: 176 },
-  { number: 5, name: "Al-Maidah", arabicName: "المائدة", revelation: "Medinan", ayahCount: 120 },
-];
+// Sample Ayah data
 
 const sampleAyahs: Ayah[] = [
   {
@@ -88,7 +74,7 @@ const SearchDialog: React.FC<SearchDialogProps> = ({ isOpen, onClose, onNavigate
     const results: SearchResult[] = [];
 
     // Search Surahs
-    sampleSurahs.forEach(surah => {
+    allSurahs.forEach(surah => {
       if (
         surah.name.toLowerCase().includes(query) ||
         surah.arabicName.includes(query) ||

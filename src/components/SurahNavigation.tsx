@@ -3,66 +3,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { BookOpen, MapPin } from 'lucide-react';
-
-interface SurahInfo {
-  number: number;
-  name: string;
-  arabicName: string;
-  revelation: 'Meccan' | 'Medinan';
-  ayahCount: number;
-  meaning: string;
-}
-
-const sampleSurahs: SurahInfo[] = [
-  {
-    number: 1,
-    name: "Al-Fatihah",
-    arabicName: "الفاتحة",
-    revelation: "Meccan",
-    ayahCount: 7,
-    meaning: "The Opening"
-  },
-  {
-    number: 2,
-    name: "Al-Baqarah",
-    arabicName: "البقرة",
-    revelation: "Medinan",
-    ayahCount: 286,
-    meaning: "The Cow"
-  },
-  {
-    number: 3,
-    name: "Aal-E-Imran",
-    arabicName: "آل عمران",
-    revelation: "Medinan",
-    ayahCount: 200,
-    meaning: "The Family of Imran"
-  },
-  {
-    number: 4,
-    name: "An-Nisa",
-    arabicName: "النساء",
-    revelation: "Medinan",
-    ayahCount: 176,
-    meaning: "The Women"
-  },
-  {
-    number: 5,
-    name: "Al-Maidah",
-    arabicName: "المائدة",
-    revelation: "Medinan",
-    ayahCount: 120,
-    meaning: "The Table Spread"
-  },
-  {
-    number: 6,
-    name: "Al-Anam",
-    arabicName: "الأنعام",
-    revelation: "Meccan",
-    ayahCount: 165,
-    meaning: "The Cattle"
-  }
-];
+import { allSurahs, type SurahInfo } from '@/data/surahs';
 
 interface SurahNavigationProps {
   onSurahSelect: (surahNumber: number) => void;
@@ -81,7 +22,7 @@ const SurahNavigation: React.FC<SurahNavigationProps> = ({ onSurahSelect, select
       </div>
 
       <div className="grid gap-3">
-        {sampleSurahs.map((surah) => (
+        {allSurahs.map((surah) => (
           <Card 
             key={surah.number}
             className={`p-4 cursor-pointer transition-gentle hover:shadow-elevated ${
