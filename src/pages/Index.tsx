@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import QuranReader from '@/components/QuranReader';
 import SurahNavigation from '@/components/SurahNavigation';
+import ProgressPage from '@/pages/Progress';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { BookOpen, Heart, Star, Users, Shield } from 'lucide-react';
+import { BookOpen, Heart, Star, Users, Shield, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Index = () => {
-  const [currentView, setCurrentView] = useState<'home' | 'reader' | 'navigation'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'reader' | 'navigation' | 'progress'>('home');
   const [selectedSurah, setSelectedSurah] = useState<number>(1);
 
   if (currentView === 'reader') {
@@ -36,6 +37,18 @@ const Index = () => {
           />
         </div>
       </div>
+    );
+  }
+
+  if (currentView === 'progress') {
+    return (
+      <ProgressPage 
+        onBack={() => setCurrentView('home')}
+        onNavigateToSurah={(surahNumber) => {
+          setSelectedSurah(surahNumber);
+          setCurrentView('reader');
+        }}
+      />
     );
   }
 
@@ -75,6 +88,14 @@ const Index = () => {
               >
                 <Star className="h-5 w-5 mr-2" />
                 Explore Surahs
+              </Button>
+              <Button 
+                variant="peaceful" 
+                size="lg"
+                onClick={() => setCurrentView('progress')}
+              >
+                <TrendingUp className="h-5 w-5 mr-2" />
+                View Progress
               </Button>
             </div>
           </div>
